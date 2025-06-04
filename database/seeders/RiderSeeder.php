@@ -16,18 +16,12 @@ class RiderSeeder extends Seeder
      */
     public function run(): void
     {
-        $cityIds = City::pluck('id');
-        $vehicleIds = Vehicle::pluck('id');
+        $riders = User::where('type', 'rider')->get();
 
-        $riderUsers = User::where('type', 'rider')->get();
-
-        foreach ($riderUsers as $user) {
+        foreach ($riders as $index => $user) {
             Rider::create([
                 'user_id' => $user->id,
-                'city_id' => $cityIds->random(),
-                'vehicle_id' => $vehicleIds->random(),
-                'batch_number' => rand(100, 999),
-                'tga_status' => (bool)rand(0, 1),
+                'external_rider_id' => 1000 + $index,
             ]);
         }
     }

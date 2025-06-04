@@ -16,8 +16,7 @@ class City extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function riders()
-    {
-        return $this->hasMany(Rider::class);
+    public function performanceReports() {
+        return $this->hasMany(RiderPerformanceReport::class);
     }
 }
