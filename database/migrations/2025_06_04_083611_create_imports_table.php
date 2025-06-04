@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('riders', function (Blueprint $table) {
+        Schema::create('imports', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->bigInteger('external_rider_id')->unique();
+            $table->string('file_name');
+            $table->timestamp('import_date')->useCurrent();
+            $table->foreignId('imported_by')->constrained('users')->onDelete('restrict');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('riders');
+        Schema::dropIfExists('imports');
     }
 };

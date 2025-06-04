@@ -4,19 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Vehicle extends Model
+class Import extends Model
 {
     /**
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'file_name',
+        'imported_by',
     ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function performanceReports() {
+    public function reports() {
         return $this->hasMany(RiderPerformanceReport::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function importedBy() {
+        return $this->belongsTo(User::class, 'imported_by');
     }
 }

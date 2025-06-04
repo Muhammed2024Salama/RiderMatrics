@@ -21,9 +21,11 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
         'password',
         'type',
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -52,8 +54,21 @@ class User extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function rider()
-    {
+    public function rider() {
         return $this->hasOne(Rider::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function imports() {
+        return $this->hasMany(Import::class, 'imported_by');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function auditLogs() {
+        return $this->hasMany(AuditLog::class, 'performed_by');
     }
 }
