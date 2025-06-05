@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('audit_logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('report_id')->constrained('rider_performance_reports')->onDelete('cascade');
-            $table->enum('action', ['create', 'update', 'delete']);
-            $table->text('changes')->nullable();
-            $table->foreignId('performed_by')->constrained('users')->onDelete('restrict');
-            $table->timestamp('performed_at')->useCurrent();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('action');
+            $table->string('model_type');
+            $table->bigInteger('model_id')->nullable();
+            $table->text('description')->nullable();
+            $table->string('ip_address', 45)->nullable();
+            $table->text('user_agent')->nullable();
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 

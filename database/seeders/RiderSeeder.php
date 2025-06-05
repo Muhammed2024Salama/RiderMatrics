@@ -16,13 +16,17 @@ class RiderSeeder extends Seeder
      */
     public function run(): void
     {
-        $riders = User::where('type', 'rider')->get();
-
-        foreach ($riders as $index => $user) {
-            Rider::create([
-                'user_id' => $user->id,
-                'external_rider_id' => 1000 + $index,
-            ]);
-        }
+        Rider::create([
+            'user_id' => 2, // Rider One
+            'external_rider_id' => 1001,
+            'nationality' => 'Saudi',
+            'city_id' => 1,
+            'mobile_number' => '0551234567',
+            'iqama_number' => '9876543210',
+            'iqama_expiry_date' => '2025-12-31',
+            'health_insurance_company' => 'Tawuniya',
+            'health_insurance_expiry' => '2025-06-30',
+            'email' => 'rider1@example.com',
+        ]);
     }
 }

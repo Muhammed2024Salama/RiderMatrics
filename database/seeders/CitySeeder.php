@@ -13,10 +13,22 @@ class CitySeeder extends Seeder
      */
     public function run(): void
     {
-        $cities = ['Cairo', 'Alexandria', 'Giza'];
-
-        foreach ($cities as $city) {
-            City::create(['name' => $city]);
-        }
+        City::insert([
+            [
+                'name' => 'Riyadh',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'name' => 'Jeddah',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'name' => 'Dammam',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+        ]);
     }
 }
