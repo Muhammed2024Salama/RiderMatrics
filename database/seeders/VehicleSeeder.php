@@ -13,10 +13,22 @@ class VehicleSeeder extends Seeder
      */
     public function run(): void
     {
-        $vehicles = ['Bike', 'Car', 'Scooter'];
-
-        foreach ($vehicles as $vehicle) {
-            Vehicle::create(['name' => $vehicle]);
-        }
+        Vehicle::insert([
+            [
+                'name' => 'Bike',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'name' => 'Car',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'name' => 'Scooter',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+        ]);
     }
 }

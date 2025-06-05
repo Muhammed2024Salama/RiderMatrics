@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,8 +16,10 @@ class DatabaseSeeder extends Seeder
             CitySeeder::class,
             VehicleSeeder::class,
             RiderSeeder::class,
-            ImportSeeder::class,
+            RiderVehicleSeeder::class,
             RiderPerformanceReportSeeder::class,
+            SubscriptionSeeder::class,
+            ImportSeeder::class,
             AuditLogSeeder::class,
         ]);
     }

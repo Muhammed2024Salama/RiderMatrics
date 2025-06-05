@@ -14,14 +14,14 @@ class AuditLogSeeder extends Seeder
      */
     public function run(): void
     {
-        $report = RiderPerformanceReport::first();
-
         AuditLog::create([
-            'report_id' => $report->id,
+            'user_id' => 1,
             'action' => 'create',
-            'changes' => json_encode(['completed_deliveries' => 14]),
-            'performed_by' => 1,    // Admin
-            'performed_at' => now(),
+            'model_type' => 'App\Models\Rider',
+            'model_id' => 1,
+            'description' => 'Created new rider record',
+            'ip_address' => '127.0.0.1',
+            'user_agent' => 'PostmanRuntime/7.32.0',
         ]);
     }
 }

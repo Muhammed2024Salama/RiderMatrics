@@ -5,31 +5,25 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AuditLog extends Model
+class Subscription extends Model
 {
     use HasFactory;
-
-    public $timestamps = false;
 
     /**
      * @var string[]
      */
     protected $fillable = [
-        'user_id',
-        'action',
-        'model_type',
-        'model_id',
-        'description',
-        'ip_address',
-        'user_agent',
-        'created_at'
+        'rider_id',
+        'start_date',
+        'end_date',
+        'is_active'
     ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function rider()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Rider::class);
     }
 }

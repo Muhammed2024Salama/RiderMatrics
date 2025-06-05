@@ -14,37 +14,32 @@ return new class extends Migration
         Schema::create('rider_performance_reports', function (Blueprint $table) {
             $table->id();
             $table->foreignId('rider_id')->constrained()->onDelete('cascade');
+            $table->foreignId('city_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('vehicle_id')->nullable()->constrained()->nullOnDelete();
             $table->date('report_date');
-            $table->foreignId('city_id')->constrained()->onDelete('restrict');
-            $table->foreignId('vehicle_id')->constrained()->onDelete('restrict');
+
             $table->integer('batch_number')->nullable();
-            $table->boolean('tga_status')->default(false);
-            $table->string('error_codes')->default('0');
-
-            // Working Hours Metrics
-            $table->integer('shifts_count')->default(0);
-            $table->integer('working_days')->default(0);
-            $table->decimal('planned_working_hours', 8, 2)->default(0.00);
-            $table->decimal('actual_working_hours', 8, 2)->default(0.00);
-            $table->decimal('avg_working_hours_per_day', 8, 2)->default(0.00);
-            $table->decimal('attendance_rate', 5, 2)->default(0.00);
-            $table->decimal('break_hours', 8, 2)->default(0.00);
-            $table->decimal('lost_hours', 8, 2)->default(0.00);
-
-            // Delivery Metrics
-            $table->decimal('acceptance_rate', 5, 2)->default(0.00);
-            $table->decimal('contact_rate', 5, 2)->default(0.00);
-            $table->integer('no_shows')->default(0);
-            $table->decimal('no_show_percentage', 5, 2)->default(0.00);
-            $table->integer('notified_deliveries')->default(0);
-            $table->integer('completed_deliveries')->default(0);
-            $table->integer('accepted_deliveries')->default(0);
-            $table->integer('not_accepted_deliveries')->default(0);
-            $table->integer('stacked_deliveries')->default(0);
-            $table->integer('declined_deliveries')->default(0);
-            $table->integer('cancelled_deliveries')->default(0);
-
-            $table->foreignId('import_id')->nullable()->constrained('imports')->nullOnDelete();
+            $table->integer('tga_status')->nullable();
+            $table->text('error_codes')->nullable();
+            $table->integer('shifts_count')->nullable();
+            $table->integer('working_days')->nullable();
+            $table->decimal('planned_working_hours', 5, 2)->nullable();
+            $table->decimal('actual_working_hours', 5, 2)->nullable();
+            $table->decimal('avg_working_hours_per_day', 5, 2)->nullable();
+            $table->string('attendance_rate', 10)->nullable();
+            $table->decimal('break_hours', 5, 2)->nullable();
+            $table->decimal('lost_hours', 5, 2)->nullable();
+            $table->string('acceptance_rate', 10)->nullable();
+            $table->string('contact_rate', 10)->nullable();
+            $table->integer('no_shows')->nullable();
+            $table->string('no_show_percent', 10)->nullable();
+            $table->integer('notified_deliveries')->nullable();
+            $table->integer('completed_deliveries')->nullable();
+            $table->integer('accepted_deliveries')->nullable();
+            $table->integer('not_accepted_deliveries')->nullable();
+            $table->integer('stacked_deliveries')->nullable();
+            $table->integer('declined_deliveries')->nullable();
+            $table->integer('cancelled_deliveries')->nullable();
 
             $table->timestamps();
         });

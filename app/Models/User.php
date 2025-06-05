@@ -54,21 +54,24 @@ class User extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function rider() {
+    public function rider()
+    {
         return $this->hasOne(Rider::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function imports() {
-        return $this->hasMany(Import::class, 'imported_by');
+    public function auditLogs()
+    {
+        return $this->hasMany(AuditLog::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function auditLogs() {
-        return $this->hasMany(AuditLog::class, 'performed_by');
+    public function imports()
+    {
+        return $this->hasMany(Import::class, 'imported_by');
     }
 }
